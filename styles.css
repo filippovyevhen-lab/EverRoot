@@ -105,3 +105,5 @@ body{overflow-wrap:break-word}
 }
 /* V2 responsive photography tuning */
 @media(max-width:650px){.hero-bg{background-position:center 42%}.hero-content{padding-left:max(8px,env(safe-area-inset-left));padding-right:max(8px,env(safe-area-inset-right))}.hero-overlay{background:linear-gradient(90deg,rgba(8,31,22,.82),rgba(8,31,22,.3)),linear-gradient(0deg,rgba(8,31,22,.52),transparent 52%)}.image-card img{object-position:center 46%}}
+/* Keep mobile Hero copy safely inside the viewport */
+@media(max-width:650px){.hero .hero-content{width:calc(100% - 48px);max-width:1180px;margin-left:auto;margin-right:auto;padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}}
