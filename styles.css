@@ -78,3 +78,28 @@ body{overflow-wrap:break-word}
   .roadmap div{border-top:1px solid var(--line)}
   .initiator-card{grid-template-columns:1fr}
 }
+
+/* Localized Hero composition */
+.hero{min-height:max(850px,100svh);padding-top:clamp(112px,12vh,150px)}
+.hero-content{width:100%;padding-bottom:clamp(76px,10vh,115px)}
+.hero h1{font-size:clamp(58px,7.5vw,108px);line-height:.96;max-width:min(940px,100%);overflow-wrap:normal;word-break:normal;text-wrap:balance}
+:lang(pl) .hero h1,:lang(uk) .hero h1,:lang(ru) .hero h1{font-size:clamp(52px,6.2vw,86px);line-height:1;max-width:min(1040px,100%);letter-spacing:-.045em}
+:lang(pl) .hero p,:lang(uk) .hero p,:lang(ru) .hero p{max-width:min(760px,100%)}
+
+@media(max-width:1000px){
+  .hero{min-height:max(760px,100svh);padding-top:120px}
+  .hero-content{padding-bottom:80px}
+  .hero h1{font-size:clamp(52px,8vw,78px);max-width:min(850px,100%)}
+  :lang(pl) .hero h1,:lang(uk) .hero h1,:lang(ru) .hero h1{font-size:clamp(48px,7.2vw,68px);max-width:min(900px,100%)}
+}
+@media(max-width:650px){
+  .hero{min-height:max(720px,100svh);padding-top:100px}
+  .hero-content{padding-bottom:56px}
+  .hero h1{font-size:clamp(44px,13vw,56px);line-height:.98;margin-bottom:24px}
+  :lang(pl) .hero h1,:lang(uk) .hero h1,:lang(ru) .hero h1{font-size:clamp(40px,11.5vw,50px);line-height:1.02;letter-spacing:-.04em;text-wrap:pretty}
+  .hero p{margin-bottom:24px}
+}
+@media(max-height:720px) and (min-width:651px){
+  .hero{min-height:auto;padding-top:120px;padding-bottom:60px;align-items:flex-start}
+  .hero-content{padding-bottom:0}
+}
