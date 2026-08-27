@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EverRoot — Agroforestry Investment Project in EU</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f1d15;
+            --bg-card: #182b20;
+            --accent-green: #2d5a3f;
+            --accent-gold: #c5a059;
+            --text-light: #f4f6f4;
+            --text-muted: #a3b899;
+            --border: rgba(197, 160, 89, 0.2);
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(15, 29, 21, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--text-light);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--accent-gold);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-gold);
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 8px;
+            background: var(--bg-card);
+            padding: 4px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 14px;
+            transition: all 0.3s;
+        }
+
+        .lang-btn.active {
+            background: var(--accent-gold);
+            color: var(--bg-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 100px;
+            background: linear-gradient(180deg, rgba(15,29,21,0.7) 0%, rgba(15,29,21,1) 100%), 
+                        url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(197, 160, 89, 0.15);
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-family: var(--font-serif);
+            font-size: 56px;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-desc {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 36px;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--accent-gold);
+            color: var(--bg-dark);
+            border: 1px solid var(--accent-gold);
+        }
+
+        .btn-primary:hover {
+            background: #b38e46;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-light);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        /* Stats Grid */
+        .stats {
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-card);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-num {
+            font-family: var(--font-serif);
+            font-size: 42px;
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-family: var(--font-serif);
+            font-size: 38px;
+            margin-bottom: 16px;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Grid Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 12px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-gold);
+        }
+
+        .card-icon {
+            font-size: 32px;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 20px;
+            margin-bottom: 16px;
+            font-family: var(--font-serif);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        /* Paulownia Feature */
+        .feature-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .feature-img img {
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 24px;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 16px;
+            color: var(--text-muted);
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent-gold);
+            font-weight: bold;
+        }
+
+        /* Contact & Form */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 60px;
+        }
+
+        .contact-info h3 {
+            font-family: var(--font-serif);
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .contact-details {
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+            color: var(--text-muted);
+        }
+
+        .contact-item a {
+            color: var(--accent-gold);
+            text-decoration: none;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 16px;
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-light);
+            font-family: var(--font-sans);
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+        }
+
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 36px; }
+            nav { display: none; }
+            .feature-box, .contact-container { grid-template-columns: 1fr; }
+            .contact-container { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">Ever<span>Root</span></a>
+            <nav>
+                <a href="#about" data-i18n="nav_about">О проекте</a>
+                <a href="#streams" data-i18n="nav_streams">Доходы</a>
+                <a href="#tree" data-i18n="nav_tree">Павловния</a>
+                <a href="#offer" data-i18n="nav_offer">Инвестору</a>
+                <a href="#contact" data-i18n="nav_contacts">Контакты</a>
+            </nav>
+            <div class="lang-switch">
+                <button class="lang-btn active" onclick="setLang('ru')">RU</button>
+                <button class="lang-btn" onclick="setLang('en')">EN</button>
+                <button class="lang-btn" onclick="setLang('pl')">PL</button>
+                <button class="lang-btn" onclick="setLang('ua')">UA</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="badge" data-i18n="hero_badge">ESG Агропредприятие в Болгарии (ЕС)</div>
+            <h1 data-i18n="hero_title">Промышленное выращивание Павловнии и возобновляемые ресурсы</h1>
+            <p class="hero-desc" data-i18n="hero_desc">Инвестиции в высокодоходный экологический актив в ЕС: 35 Га плантации, производство мебельной древесины, мёда и биотоплива.</p>
+            <div class="hero-btns">
+                <a href="presentation.pdf" download class="btn btn-primary" data-i18n="btn_download">Скачать инвестиционный питч (PDF)</a>
+                <a href="#contact" class="btn btn-secondary" data-i18n="btn_contact">Связаться с инициатором</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Metrics Stats -->
+    <div class="stats">
+        <div class="container stats-grid">
+            <div>
+                <div class="stat-num">400 000 €</div>
+                <div class="stat-label" data-i18n="stat_inv">Требуемый объем инвестиций</div>
+            </div>
+            <div>
+                <div class="stat-num">35 Га</div>
+                <div class="stat-label" data-i18n="stat_area">Площадь плантации</div>
+            </div>
+            <div>
+                <div class="stat-num">50 / 50%</div>
+                <div class="stat-label" data-i18n="stat_share">Раздел доли предприятия</div>
+            </div>
+            <div>
+                <div class="stat-num">7 Лет</div>
+                <div class="stat-label" data-i18n="stat_payback">До 1-й промышленной вырубки</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-i18n="about_title">О проекте EverRoot</h2>
+                <p data-i18n="about_subtitle">Автономный коммерческий актив, не уничтожающий дикие леса и защищенный от инфляции в зоне ЕС.</p>
+            </div>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">🌱</div>
+                    <h3 data-i18n="card1_title">Регенеративный рост</h3>
+                    <p data-i18n="card1_desc">Главное преимущество Павловнии — восстановление из корня после спила. Затраты на 2-й и последующие циклы близки к нулю.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🇪🇺</div>
+                    <h3 data-i18n="card2_title">Юрисдикция Евросоюза</h3>
+                    <p data-i18n="card2_desc">Земля и оборудование в Южной Болгарии. Отсутствие пошлин внутри ЕС, доступ к «зеленым» субсидиям и сертификации FSC.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📈</div>
+                    <h3 data-i18n="card3_title">Дефицитный рынок</h3>
+                    <p data-i18n="card3_desc">Европейский рынок испытывает структурный дефицит древесины. Поставки из Китая и РФ ограничены или закрыты.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Revenue Streams -->
+    <section id="streams" style="background: var(--bg-card);">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-i18n="streams_title">3 потока доходов</h2>
+                <p data-i18n="streams_subtitle">Диверсификация позволяет получать прибыль задолго до созревания основного древесного массива.</p>
+            </div>
+            <div class="cards-grid">
+                <div class="card" style="background: var(--bg-dark);">
+                    <div class="card-icon">🌾</div>
+                    <h3 data-i18n="s1_title">1. Люцерна (Годы 1-3)</h3>
+                    <p data-i18n="s1_desc">Продажа высокопротеинового сена в междурядьях местным фермам (до 87 500 €/год), полностью покрывающая операционные расходы.</p>
+                </div>
+                <div class="card" style="background: var(--bg-dark);">
+                    <div class="card-icon">🐝</div>
+                    <h3 data-i18n="s2_title">2. Эко-Мёд (Годы 3-6)</h3>
+                    <p data-i18n="s2_desc">Сбор акациево-павловниевого мёда во время обильного цветения плантации. Оптовый сбыт трейдерам в Германию и Францию.</p>
+                </div>
+                <div class="card" style="background: var(--bg-dark);">
+                    <div class="card-icon">🪵</div>
+                    <h3 data-i18n="s3_title">3. Деловая древесина (Год 7)</h3>
+                    <p data-i18n="s3_desc">Промышленная вырубка (>1300 м³), переработка в сухую доску и мебельные щиты премиум-класса с высокой добавленной стоимостью.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Paulownia Specs -->
+    <section id="tree">
+        <div class="container">
+            <div class="feature-box">
+                <div class="feature-img">
+                    <img src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=800&q=80" alt="Paulownia Enterprise">
+                </div>
+                <div>
+                    <h2 style="font-family: var(--font-serif); font-size: 36px; margin-bottom: 16px;" data-i18n="tree_title">Павловния — «Алюминиевое дерево»</h2>
+                    <p style="color: var(--text-muted);" data-i18n="tree_desc">Использование морозоустойчивого гибрида Shan Tong с высокой скоростью прироста и внедрением капельного орошения (фертигации).</p>
+                    <ul class="feature-list">
+                        <li data-i18n="l1"><b>Экстремальный рост:</b> 3-5 метров в год. За 6-7 лет диаметр ствола достигает 25-35 см.</li>
+                        <li data-i18n="l2"><b>Прочность и легкость:</b> Удельный вес на 30% меньше сосны при высокой прочности на изгиб (35-40 МПа).</li>
+                        <li data-i18n="l3"><b>Пожароустойчивость:</b> Температура воспламенения свыше 400°C (против 250°C у дуба).</li>
+                        <li data-i18n="l4"><b>Инновации:</b> Использование микоризной инокуляции корней для засухоустойчивости.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investor Offer -->
+    <section id="offer" style="background: var(--bg-card);">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-i18n="offer_title">Инвестиционное предложение</h2>
+                <p data-i18n="offer_subtitle">Прозрачные условия партнерства и защищенная структура капитала</p>
+            </div>
+            <div class="cards-grid">
+                <div class="card" style="background: var(--bg-dark);">
+                    <h3 data-i18n="o1_title">Приоритетный возврат 80%</h3>
+                    <p data-i18n="o1_desc">До полного возврата вложенных 400 000 € инвестор получает 80% чистой прибыли со всех операционных потоков.</p>
+                </div>
+                <div class="card" style="background: var(--bg-dark);">
+                    <h3 data-i18n="o2_title">Раздел 50% / 50%</h3>
+                    <p data-i18n="o2_desc">После полного возврата тела инвестиций распределение прибыли фиксируется 50/50 на все последующие 7-летние циклы.</p>
+                </div>
+                <div class="card" style="background: var(--bg-dark);">
+                    <h3 data-i18n="o3_title">Защита инвестора</h3>
+                    <p data-i18n="o3_desc">Стратегические решения принимаются 100% единогласием. Операционное управление на месте берет на себя инициатор.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacts & Form -->
+    <section id="contact">
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3 data-i18n="c_title">Связаться с инициатором</h3>
+                    <p style="color: var(--text-muted);" data-i18n="c_desc">Готов предоставить полный финансовый расчет, бизнес-план и провести онлайн-презентацию проекта.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <span>👤</span>
+                            <div>
+                                <strong style="color: #fff;">Евгений Филиппов</strong>
+                                <div style="font-size: 13px;" data-i18n="c_role">Инициатор и операционный директор</div>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span>📱</span>
+                            <span>Telegram: <a href="https://t.me/" target="_blank">@your_telegram</a></span>
+                        </div>
+                        <div class="contact-item">
+                            <span>✉️</span>
+                            <span>Email: <a href="mailto:contact@everroot.eu">contact@everroot.eu</a></span>
+                        </div>
+                        <div class="contact-item">
+                            <span>📍</span>
+                            <span data-i18n="c_loc">Локация плантации: Южная Болгария, ЕС</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div>
+                    <form action="https://formspree.io/f/mayb_your_id" method="POST">
+                        <input type="text" name="name" placeholder="Ваше имя / Фонд" required>
+                        <input type="email" name="email" placeholder="Email для связи" required>
+                        <input type="text" name="phone" placeholder="Телефон / Telegram">
+                        <textarea name="message" rows="4" placeholder="Интересующая сумма инвестиций или вопрос..."></textarea>
+                        <button type="submit" class="btn btn-primary" data-i18n="btn_send">Отправить запрос</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 EverRoot Project. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Translations & Script -->
+    <script>
+        const translations = {
+            ru: {
+                nav_about: "О проекте", nav_streams: "Доходы", nav_tree: "Павловния", nav_offer: "Инвестору", nav_contacts: "Контакты",
+                hero_badge: "ESG Агропредприятие в Болгарии (ЕС)",
+                hero_title: "Промышленное выращивание Павловнии и возобновляемые ресурсы",
+                hero_desc: "Инвестиции в высокодоходный экологический актив в ЕС: 35 Га плантации, производство мебельной древесины, мёда и кормов.",
+                btn_download: "Скачать презентацию (PDF)", btn_contact: "Связаться с инициатором",
+                stat_inv: "Объем инвестиций", stat_area: "Площадь плантации", stat_share: "Раздел доли", stat_payback: "Первая вырубка",
+                about_title: "О проекте EverRoot", about_subtitle: "Автономный коммерческий актив, защищенный от инфляции в зоне ЕС.",
+                card1_title: "Регенеративный рост", card1_desc: "Восстановление из корня после спила. Затраты на 2-й и последующие циклы близки к нулю.",
+                card2_title: "Юрисдикция ЕС", card2_desc: "Земля и оборудование в Южной Болгарии. Доступ к зеленым субсидиям ЕС.",
+                card3_title: "Дефицитный рынок", card3_desc: "Европейский рынок испытывает дефицит древесины при растущем спросе на ESG-сырье.",
+                streams_title: "3 потока доходов", streams_subtitle: "Диверсификация дает выручку до созревания основного леса.",
+                s1_title: "1. Люцерна (Годы 1-3)", s1_desc: "Продажа кормов местным фермам (до 87 500 €/год) покрывает операционные расходы.",
+                s2_title: "2. Эко-Мёд (Годы 3-6)", s2_desc: "Сбор мёда во время обильного цветения. Оптовый сбыт трейдерам в Германию и Францию.",
+                s3_title: "3. Древесина (Год 7)", s3_desc: "Промышленная вырубка (>1300 м³) и переработка в сухую доску и мебельные щиты.",
+                tree_title: "Павловния — «Алюминиевое дерево»", tree_desc: "Высокая скорость роста с применением капельного орошения и микоризы.",
+                l1: "<b>Экстремальный рост:</b> 3-5 метров в год. Диаметр ствола 25-35 см за 6 лет.",
+                l2: "<b>Прочность и легкость:</b> Легче сосны на 30% при высокой прочности на изгиб.",
+                l3: "<b>Пожароустойчивость:</b> Температура воспламенения свыше 400°C.",
+                l4: "<b>Инновации:</b> Капельный полив с фертигацией и микоризная инокуляция.",
+                offer_title: "Инвестиционное предложение", offer_subtitle: "Прозрачные условия партнерства",
+                o1_title: "Приоритетный возврат 80%", o1_desc: "До возврата 400 000 € инвестор получает 80% чистой прибыли.",
+                o2_title: "Раздел 50% / 50%", o2_desc: "После окупаемости распределение фиксируется 50/50 на все последующие циклы.",
+                o3_title: "Защита капитала", o3_desc: "Стратегические решения 100% единогласием. Личный операционный контроль инициатора.",
+                c_title: "Связаться с инициатором", c_desc: "Готов предоставить полный финансовый расчет и ответы на вопросы.",
+                c_role: "Инициатор проекта", c_loc: "Локация плантации: Южная Болгария, ЕС", btn_send: "Отправить запрос"
+            },
+            en: {
+                nav_about: "About", nav_streams: "Revenue", nav_tree: "Paulownia", nav_offer: "Investor Offer", nav_contacts: "Contacts",
+                hero_badge: "ESG Agroforestry in Bulgaria (EU)",
+                hero_title: "Industrial Paulownia Farming & Renewable Timber",
+                hero_desc: "High-yield eco-asset investment in the EU: 35 Ha plantation, furniture timber, organic honey, and forage production.",
+                btn_download: "Download Pitch Deck (PDF)", btn_contact: "Contact Founder",
+                stat_inv: "Investment Capital", stat_area: "Plantation Area", stat_share: "Equity Split", stat_payback: "First Harvest Cycle",
+                about_title: "About EverRoot", about_subtitle: "Sustainable asset in the EU protected against inflation.",
+                card1_title: "Regenerative Growth", card1_desc: "Regenerates from root after cutting. Operational cost for subsequent cycles is near zero.",
+                card2_title: "EU Jurisdiction", card2_desc: "Land & machinery in Southern Bulgaria. Zero intra-EU tariffs & FSC green subsidies.",
+                card3_title: "Deficit Timber Market", card3_desc: "EU timber market faces structural deficit with high demand for eco-certified wood.",
+                streams_title: "3 Revenue Streams", streams_subtitle: "Early cash flow before main forest maturity.",
+                s1_title: "1. Alfalfa Hay (Years 1-3)", s1_desc: "High-protein forage sold to local farms (up to 87,500 €/yr) covering OPEX.",
+                s2_title: "2. Eco Honey (Years 3-6)", s2_desc: "Honey harvesting during rich blossom. Wholesale export to Germany & France.",
+                s3_title: "3. Commercial Timber (Year 7)", s3_desc: "Industrial logging (>1,300 m³) processed into dried boards and furniture panels.",
+                tree_title: "Paulownia — Aluminum Wood", tree_desc: "Ultra-fast growth hybrid Shan Tong with precision drip irrigation.",
+                l1: "<b>Fast Growth:</b> 3-5 meters per year. Reaches 25-35 cm diameter in 6 years.",
+                l2: "<b>Light & Strong:</b> 30% lighter than pine with high bending strength (35-40 MPa).",
+                l3: "<b>Fire Resistant:</b> Ignition temperature exceeds 400°C.",
+                l4: "<b>Agro-tech:</b> Drip fertigation system & mycorrhizal fungal inoculation.",
+                offer_title: "Investment Offer", offer_subtitle: "Transparent partnership structure",
+                o1_title: "80% Priority Return", o1_desc: "Investor receives 80% of net profit until full payback of €400,000.",
+                o2_title: "50% / 50% Equity Split", o2_desc: "Post payback profit split locks at 50/50 for all subsequent 7-year rotative cycles.",
+                o3_title: "Capital Protection", o3_desc: "100% unanimous strategic voting. Full on-site operational management.",
+                c_title: "Contact the Founder", c_desc: "Ready to provide full financial models and schedule an online call.",
+                c_role: "Project Founder & CEO", c_loc: "Location: Southern Bulgaria, EU", btn_send: "Send Inquiry"
+            },
+            pl: {
+                nav_about: "O projekcie", nav_streams: "Przychody", nav_tree: "Paulownia", nav_offer: "Inwestorom", nav_contacts: "Kontakt",
+                hero_badge: "Przedsiębiorstwo ESG w Bułgarii (UE)",
+                hero_title: "Przemysłowa uprawa Paulownii i surowce odnawialne",
+                hero_desc: "Inwestycja w ekologiczne aktywa w UE: 35 ha plantacji, drewno meblowe, miód i pasza.",
+                btn_download: "Pobierz prezentację (PDF)", btn_contact: "Skontaktuj się z inicjatorem",
+                stat_inv: "Wymagany kapitał", stat_area: "Powierzchnia", stat_share: "Podział udziałów", stat_payback: "Pierwsze zbiory",
+                about_title: "O projekcie EverRoot", about_subtitle: "Trwały zasób w UE chroniony przed inflacją.",
+                card1_title: "Wzrost regeneracyjny", card1_desc: "Drzewo odrasta z korzenia po ścięciu. Koszty kolejnych cykli są bliskie zeru.",
+                card2_title: "Jurysdykcja UE", card2_desc: "Ziemia i sprzęt w Bułgarii. Brak ceł w UE, dostęp do zielonych subsydiów.",
+                card3_title: "Rynek deficytowy", card3_desc: "Europejski rynek drewna boryka się z deficytem przy rosnącym popycie.",
+                streams_title: "3 strumienie przychodów", streams_subtitle: "Przychody przed osiągnięciem dojrzałości lasu.",
+                s1_title: "1. Lucerna (Lata 1-3)", s1_desc: "Sprzedaż paszy (do 87 500 €/rok) pokrywająca koszty operacyjne.",
+                s2_title: "2. Eko-Miód (Lata 3-6)", s2_desc: "Zbiór miodu podczas kwitnienia. Hurt do Niemiec i Francji.",
+                s3_title: "3. Drewno (Rok 7)", s3_desc: "Pozyskanie drewna (>1300 m³) i obróbka na deski i płyty meblowe.",
+                tree_title: "Paulownia — „Aluminiowe Drzewo”", tree_desc: "Szybkorosnący hybryd Shan Tong z nawadnianiem kropelkowym.",
+                l1: "<b>Szybki wzrost:</b> 3-5 metrów rocznie. Średnica 25-35 cm w 6 lat.",
+                l2: "<b>Lekkość i wytrzymałość:</b> 30% lżejsze od sosny.",
+                l3: "<b>Odporność na ogień:</b> Temperatura zapłonu powyżej 400°C.",
+                l4: "<b>Innowacje:</b> System mikoryzy i nawadnianie kropelkowe.",
+                offer_title: "Oferta Inwestycyjna", offer_subtitle: "Przejrzysta struktura partnerstwa",
+                o1_title: "Priorytetowy zwrot 80%", o1_desc: "Inwestor otrzymuje 80% zysku do czasu zwrotu 400 000 €.",
+                o2_title: "Podział 50% / 50%", o2_desc: "Po zwrocie kapitału zysk dzielony jest 50/50 na kolejne cykle.",
+                o3_title: "Ochrona kapitału", o3_desc: "Decyzje strategiczne 100% jednomyślnie. Zarządzanie na miejscu.",
+                c_title: "Kontakt z Inicjatorem", c_desc: "Gotowy do przedstawienia wyliczeń finansowych.",
+                c_role: "Inicjator projektu", c_loc: "Lokalizacja: Południowa Bułgaria, UE", btn_send: "Wyślij zapytanie"
+            },
+            ua: {
+                nav_about: "Про проєкт", nav_streams: "Доходи", nav_tree: "Павловнія", nav_offer: "Інвестору", nav_contacts: "Контакти",
+                hero_badge: "ESG Агропідприємство в Болгарії (ЄС)",
+                hero_title: "Промислове вирощування Павловнії та відновлювані ресурси",
+                hero_desc: "Інвестиції у високоприбутковий екологічний актив у ЄС: 35 Га плантації, меблева деревина, мед та корми.",
+                btn_download: "Завантажити презентацію (PDF)", btn_contact: "Зв'язатися з ініціатором",
+                stat_inv: "Обсяг інвестицій", stat_area: "Площа плантації", stat_share: "Розподіл часток", stat_payback: "Перша вирубка",
+                about_title: "Про проєкт EverRoot", about_subtitle: "Автономний комерційний актив у зоні ЄС.",
+                card1_title: "Регенеративне зростання", card1_desc: "Відновлення з кореня після спилу. Витрати на наступні цикли близькі до нуля.",
+                card2_title: "Юрисдикція ЄС", card2_desc: "Земля та техніка у Болгарії. Безмитний склад та зелені субсидії ЄС.",
+                card3_title: "Дефіцитний ринок", card3_desc: "Європейський ринок має дефіцит деревини при високому попиті.",
+                streams_title: "3 потоки доходів", streams_subtitle: "Прибуток до дозрівання основного лісу.",
+                s1_title: "1. Люцерна (Роки 1-3)", s1_desc: "Продаж кормів місцевим фермам (до 87 500 €/рік) покриває OPEX.",
+                s2_title: "2. Еко-Мед (Роки 3-6)", s2_desc: "Збір меду під час цвітіння. Оптовий збут до Німеччини та Франції.",
+                s3_title: "3. Деревина (Рік 7)", s3_desc: "Промислова вырубка (>1300 м³) та переробка на дошку і меблевий щит.",
+                tree_title: "Павловнія — «Алюмінієве дерево»", tree_desc: "Швидкий приріст із крапельним зрошенням та мікоризою.",
+                l1: "<b>Швидке зростання:</b> 3-5 метрів на рік. Діаметр 25-35 см за 6 років.",
+                l2: "<b>Міцність та легкість:</b> На 30% легша за сосну.",
+                l3: "<b>Вогнестійкість:</b> Температура спалаху понад 400°C.",
+                l4: "<b>Інновації:</b> Фертигація та мікоризна інокуляція.",
+                offer_title: "Інвестиційна пропозиція", offer_subtitle: "Прозорі умови партнерства",
+                o1_title: "Пріоритетне повернення 80%", o1_desc: "Інвестор отримує 80% чистого прибутку до повернення 400 000 €.",
+                o2_title: "Розподіл 50% / 50%", o2_desc: "Після окупності прибуток ділиться 50/50 на всі наступні цикли.",
+                o3_title: "Захист капіталу", o3_desc: "Стратегічні рішення 100% одностайно. Операційний контроль на місці.",
+                c_title: "Зв'язатися з ініціатором", c_desc: "Готовий надати повний фінансовий розрахунок.",
+                c_role: "Ініціатор проєкту", c_loc: "Локація: Південна Болгарія, ЄС", btn_send: "Надіслати запит"
+            }
+        };
+
+        function setLang(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+        }
+    </script>
+</body>
+</html>
