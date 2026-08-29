@@ -41,6 +41,8 @@ const translations = {
     'form.sending':'Sending…',
     'form.success':'Thank you. The investment presentation has been sent to your email.',
     'form.error':'We could not send the presentation. Please check your details and try again.',
+    'form.configError':'Email delivery is not configured yet. Please contact EverRoot directly.',
+    'form.timeout':'The request took too long. Please try again.',
     'form.messageph':'Tell us briefly about your interest'
   },
   pl:{
@@ -84,6 +86,8 @@ const translations = {
     'form.companyph':'Opcjonalnie',
     'form.sending':'Wysyłanie…',
     'form.error':'Nie udało się wysłać prezentacji. Sprawdź dane i spróbuj ponownie.',
+    'form.configError':'Wysyłka e-mail nie została jeszcze skonfigurowana. Skontaktuj się bezpośrednio z EverRoot.',
+    'form.timeout':'Żądanie trwało zbyt długo. Spróbuj ponownie.',
     'form.messageph':'Krótko opisz swoje zainteresowanie'
   },
   uk:{
@@ -127,6 +131,8 @@ const translations = {
     'form.companyph':'Необов’язково',
     'form.sending':'Надсилання…',
     'form.error':'Не вдалося надіслати презентацію. Перевірте дані та повторіть спробу.',
+    'form.configError':'Надсилання електронною поштою ще не налаштовано. Зв’яжіться безпосередньо з EverRoot.',
+    'form.timeout':'Запит виконувався надто довго. Спробуйте ще раз.',
     'form.messageph':'Коротко опишіть свою зацікавленість'
   },
   ru:{
@@ -170,11 +176,22 @@ const translations = {
     'form.companyph':'Необязательно',
     'form.sending':'Отправка…',
     'form.error':'Не удалось отправить презентацию. Проверьте данные и повторите попытку.',
+    'form.configError':'Отправка по электронной почте пока не настроена. Свяжитесь с EverRoot напрямую.',
+    'form.timeout':'Запрос выполнялся слишком долго. Попробуйте ещё раз.',
     'form.messageph':'Кратко опишите свой интерес'
   }
 };
 const langButtons=document.querySelectorAll('.lang');
-function setLang(lang){document.documentElement.lang=lang;document.querySelectorAll('[data-i18n]').forEach(el=>{const key=el.dataset.i18n; if(translations[lang]?.[key]) el.innerHTML=translations[lang][key];});document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{const key=el.dataset.i18nPlaceholder;if(translations[lang]?.[key]) el.placeholder=translations[lang][key];});langButtons.forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));localStorage.setItem('everroot-lang',lang)}
+function setLang(lang){
+  document.documentElement.lang=lang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const key=el.dataset.i18n;if(translations[lang]?.[key])el.innerHTML=translations[lang][key];});
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{const key=el.dataset.i18nPlaceholder;if(translations[lang]?.[key])el.placeholder=translations[lang][key];});
+  const status=document.getElementById('formStatus');
+  const statusKey=status?.dataset.messageKey;
+  if(statusKey&&translations[lang]?.[statusKey])status.textContent=translations[lang][statusKey];
+  langButtons.forEach(button=>button.classList.toggle('active',button.dataset.lang===lang));
+  localStorage.setItem('everroot-lang',lang);
+}
 langButtons.forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
 setLang(localStorage.getItem('everroot-lang')||'en');
 
@@ -183,33 +200,51 @@ const accessForm=document.getElementById('accessForm');
 const accessSubmit=document.getElementById('accessSubmit');
 const formStatus=document.getElementById('formStatus');
 const languageCodes={en:'en',pl:'pl',uk:'ua',ru:'ru'};
+const FORM_TIMEOUT_MS=15000;
+let requestInFlight=false;
 function formMessage(key){return translations[document.documentElement.lang]?.[key] || translations.en[key] || '';}
+function setFormStatus(key,state){
+  formStatus.dataset.messageKey=key;
+  formStatus.dataset.state=state;
+  formStatus.textContent=formMessage(key);
+}
+function configuredEndpoint(){
+  const endpoint=window.EVERROOT_DECK_API_URL?.trim() || '';
+  if(!endpoint || endpoint.toUpperCase().includes('YOUR-PROJECT'))return '';
+  try{
+    const url=new URL(endpoint);
+    return url.protocol==='https:' ? url.href : '';
+  }catch{return '';}
+}
 accessForm?.addEventListener('submit',async event=>{
   event.preventDefault();
+  if(requestInFlight)return;
   if(!accessForm.checkValidity()){accessForm.reportValidity();return;}
-  const endpoint=window.EVERROOT_DECK_API_URL?.trim();
-  const originalButton=accessSubmit.innerHTML;
+  const endpoint=configuredEndpoint();
+  if(!endpoint){setFormStatus('form.configError','error');return;}
+  requestInFlight=true;
   accessSubmit.disabled=true;
   accessSubmit.setAttribute('aria-busy','true');
   accessSubmit.textContent=formMessage('form.sending');
-  formStatus.dataset.state='sending';
-  formStatus.textContent=formMessage('form.sending');
+  setFormStatus('form.sending','sending');
   const data=new FormData(accessForm);
   const payload={name:data.get('name'),email:data.get('email'),company:data.get('company'),message:data.get('message'),website:data.get('website'),language:languageCodes[document.documentElement.lang] || 'en'};
+  const controller=new AbortController();
+  const timeoutId=setTimeout(()=>controller.abort(),FORM_TIMEOUT_MS);
   try{
-    if(!endpoint) throw new Error('endpoint-not-configured');
-    const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
-    if(!response.ok) throw new Error('request-failed');
+    const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),signal:controller.signal});
+    const result=await response.json().catch(()=>null);
+    if(!response.ok || result?.ok!==true)throw new Error('request-failed');
     accessForm.reset();
-    formStatus.dataset.state='success';
-    formStatus.textContent=formMessage('form.success');
-  }catch{
-    formStatus.dataset.state='error';
-    formStatus.textContent=formMessage('form.error');
+    setFormStatus('form.success','success');
+  }catch(error){
+    setFormStatus(error?.name==='AbortError'?'form.timeout':'form.error','error');
   }finally{
+    clearTimeout(timeoutId);
+    requestInFlight=false;
     accessSubmit.disabled=false;
     accessSubmit.removeAttribute('aria-busy');
-    accessSubmit.innerHTML=originalButton;
+    accessSubmit.innerHTML=formMessage('form.button');
   }
 });
 const menu=document.querySelector('.menu-toggle');menu?.addEventListener('click',()=>document.querySelector('.nav').classList.toggle('mobile-open'));
