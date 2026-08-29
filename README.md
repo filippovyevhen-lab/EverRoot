@@ -10,6 +10,7 @@ A premium single-page investor landing page for the EverRoot agroforestry projec
 - `api/request-deck.mjs` — Vercel Function that sends localized email through Resend
 - `everroot-api.js` — the single public location for the deployed backend URL
 - `assets/decks/` — EN, PL, UA and RU investment presentations
+- `CNAME` — the GitHub Pages custom domain
 
 ## Languages
 
@@ -31,10 +32,10 @@ In the Vercel project open **Settings → Environment Variables** and add:
 - `RESEND_API_KEY` — the API key created in Resend
 - `RESEND_FROM_EMAIL` — for example `EverRoot <invest@yourdomain.com>`
 - `EVERROOT_OWNER_EMAIL` — the address that receives lead notifications
-- `EVERROOT_SITE_URL` — the GitHub Pages URL without a trailing slash
-- `ALLOWED_ORIGINS` — the GitHub Pages origin, for example `https://filippovyevhen-lab.github.io`
+- `EVERROOT_SITE_URL` — `https://everroot.eu`
+- `ALLOWED_ORIGINS` — `https://everroot.eu,https://www.everroot.eu,https://filippovyevhen-lab.github.io,https://ever-root.vercel.app`
 
-To allow more than one origin, separate exact origins with commas. Add localhost only while testing, for example: `https://filippovyevhen-lab.github.io,http://localhost:5500`.
+`ALLOWED_ORIGINS` contains exact browser origins separated by commas. Do not add paths or a wildcard. Add localhost only while testing.
 
 ### 3. Verify the sending domain in Resend
 
@@ -48,19 +49,19 @@ To allow more than one origin, separate exact origins with commas. Add localhost
 
 1. In Vercel open **Deployments**.
 2. Select the latest deployment and click **Redeploy** after adding environment variables.
-3. Copy the production project domain, for example `https://ever-root.vercel.app`.
-4. The function endpoint is that domain plus `/api/request-deck`.
+3. The production backend domain is `https://ever-root.vercel.app`.
+4. The function endpoint is `https://ever-root.vercel.app/api/request-deck`.
 
 ### 5. Connect GitHub Pages to the backend
 
-Open `everroot-api.js` and replace:
+The deployed endpoint is configured in `everroot-api.js`:
 
 ```js
 window.EVERROOT_DECK_API_URL =
   'https://ever-root.vercel.app/api/request-deck';
 ```
 
-with the production Vercel Function URL. Commit the change to `main` and wait for GitHub Pages to finish publishing.
+The public frontend remains hosted by GitHub Pages and uses `https://everroot.eu` as its canonical domain.
 
 ### 6. Test all four languages
 
@@ -70,10 +71,10 @@ For EN, PL, UA and RU:
 2. Submit the form using an email address you can access.
 3. Confirm that the investor receives the matching PDF link.
 4. Confirm that `EVERROOT_OWNER_EMAIL` receives a separate lead notification.
-5. Open the PDF link and confirm that it loads from `assets/decks/`.
+5. Open the PDF link and confirm that it loads from `https://everroot.eu/assets/decks/`.
 
 The API endpoint never returns Resend error details or environment variables to the browser.
 
 ## Deploy
 
-The public site remains hosted on GitHub Pages. The email endpoint is deployed separately as a Vercel Function.
+The public site is published from the `main` branch root through GitHub Pages at `https://everroot.eu`. The email endpoint is deployed separately as a Vercel Function.
