@@ -111,13 +111,14 @@
         <div class="investment-copy"><div class="eyebrow green" data-i18n="invest.eyebrow">05 — Investment opportunity</div><h2 data-i18n="invest.title">Interested in the full picture?</h2><p data-i18n="invest.text">Request the investment presentation for the detailed project model, capital allocation, operating assumptions, development roadmap and partnership structure.</p><ul><li data-i18n="invest.li1">Detailed project economics</li><li data-i18n="invest.li2">Capital requirements and use of funds</li><li data-i18n="invest.li3">Development and operating roadmap</li><li data-i18n="invest.li4">Partnership and governance concept</li></ul></div>
         <form class="access-form" id="accessForm">
           <div class="form-title" data-i18n="form.title">Request investment materials</div>
-          <label><span data-i18n="form.name">Full name</span><input name="name" required placeholder="Your name" data-i18n-placeholder="form.nameph"></label>
-          <label><span data-i18n="form.email">Email</span><input type="email" name="email" required placeholder="name@company.com" data-i18n-placeholder="form.emailph"></label>
-          <label><span data-i18n="form.company">Company / fund</span><input name="company" placeholder="Optional" data-i18n-placeholder="form.companyph"></label>
-          <label><span data-i18n="form.message">Message</span><textarea name="message" rows="4" placeholder="Tell us briefly about your interest" data-i18n-placeholder="form.messageph"></textarea></label>
-          <button class="button button-dark full" type="submit" data-i18n="form.button">Request access <span>→</span></button>
+          <label><span data-i18n="form.name">Full name</span><input name="name" required maxlength="120" autocomplete="name" placeholder="Your name" data-i18n-placeholder="form.nameph"></label>
+          <label><span data-i18n="form.email">Email</span><input type="email" name="email" required maxlength="254" autocomplete="email" inputmode="email" placeholder="name@company.com" data-i18n-placeholder="form.emailph"></label>
+          <label><span data-i18n="form.company">Company / fund</span><input name="company" maxlength="160" autocomplete="organization" placeholder="Optional" data-i18n-placeholder="form.companyph"></label>
+          <label><span data-i18n="form.message">Message</span><textarea name="message" rows="4" maxlength="2000" placeholder="Tell us briefly about your interest" data-i18n-placeholder="form.messageph"></textarea></label>
+          <label class="form-honeypot" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+          <button class="button button-dark full" id="accessSubmit" type="submit" data-i18n="form.button">Request access <span>→</span></button>
           <p class="form-status" id="formStatus" aria-live="polite"></p>
-          <small data-i18n="form.note">By submitting, you agree to be contacted regarding EverRoot. This form is a front-end demo until an email service is connected.</small>
+          <small data-i18n="form.note">By submitting, you agree to be contacted regarding EverRoot.</small>
         </form>
       </div>
     </section>
@@ -136,6 +137,7 @@
   </main>
 
   <footer class="footer"><div class="container"><div class="brand"><span class="brand-mark">E</span><span>EverRoot</span></div><span>© 2026 EverRoot Project</span><span data-i18n="footer.disclaimer">Investment information is indicative and subject to due diligence.</span></div><div class="container photo-credits"><strong data-i18n="credits.title">Photo credits</strong><div class="photo-credit-list"><span>Paulownia (14576455524) — Jan Alonzo / <a href="https://commons.wikimedia.org/wiki/File:Paulownia_(14576455524).jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a> / <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 2.0</a> · <em data-i18n="credits.modified">cropped and color-adjusted for layout</em></span><span>Paulownia tomentosa / Paulownia puszysta 2015-05-17 01 — Agnieszka Kwiecień (Nova) / <a href="https://commons.wikimedia.org/wiki/File:Paulownia_tomentosa_Paulownia_puszysta_2015-05-17_01.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a> · <em data-i18n="credits.modified">cropped and color-adjusted for layout</em></span></div></div></footer>
-  <script src="script.js?v=20260828-1"></script>
+  <script src="config.js?v=20260829-1"></script>
+  <script src="script.js?v=20260829-1"></script>
 </body>
 </html>
