@@ -32,9 +32,9 @@ In the Vercel project open **Settings → Environment Variables** and add:
 - `RESEND_FROM_EMAIL` — for example `EverRoot <invest@yourdomain.com>`
 - `EVERROOT_OWNER_EMAIL` — the address that receives lead notifications
 - `EVERROOT_SITE_URL` — the GitHub Pages URL without a trailing slash
-- `ALLOWED_ORIGINS` — the GitHub Pages origin, for example `https://username.github.io`
+- `ALLOWED_ORIGINS` — the GitHub Pages origin, for example `https://filippovyevhen-lab.github.io`
 
-To allow more than one origin, separate exact origins with commas. Add localhost only while testing, for example: `https://username.github.io,http://localhost:5500`.
+To allow more than one origin, separate exact origins with commas. Add localhost only while testing, for example: `https://filippovyevhen-lab.github.io,http://localhost:5500`.
 
 ### 3. Verify the sending domain in Resend
 
