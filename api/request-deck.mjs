@@ -191,15 +191,7 @@ export default {
     const from = process.env.RESEND_FROM_EMAIL;
     const owner = process.env.EVERROOT_OWNER_EMAIL;
     const configuredSiteUrl = process.env.EVERROOT_SITE_URL;
-    if (!apiKey || !from || !owner || !configuredSiteUrl) {
-      console.warn('EverRoot env check', {
-        hasResendApiKey: Boolean(process.env.RESEND_API_KEY),
-        hasResendFromEmail: Boolean(process.env.RESEND_FROM_EMAIL),
-        hasOwnerEmail: Boolean(process.env.EVERROOT_OWNER_EMAIL),
-        hasSiteUrl: Boolean(process.env.EVERROOT_SITE_URL)
-      });
-      return json(origin, 503, { ok: false });
-    }
+    if (!apiKey || !from || !owner || !configuredSiteUrl) return json(origin, 503, { ok: false });
 
     let siteUrl;
     try {
@@ -207,7 +199,6 @@ export default {
       if (!['http:', 'https:'].includes(parsedSiteUrl.protocol)) throw new Error('invalid-site-url');
       siteUrl = parsedSiteUrl.href.replace(/\/$/, '');
     } catch {
-      console.warn('EverRoot invalid EVERROOT_SITE_URL');
       return json(origin, 503, { ok: false });
     }
     const deckUrl = `${siteUrl}/assets/decks/${deckFiles[language]}`;
