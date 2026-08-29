@@ -210,7 +210,7 @@ function setFormStatus(key,state){
 }
 function configuredEndpoint(){
   const endpoint=window.EVERROOT_DECK_API_URL?.trim() || '';
-  if(!endpoint || endpoint.toUpperCase().includes('YOUR-PROJECT'))return '';
+  if(!endpoint)return '';
   try{
     const url=new URL(endpoint);
     return url.protocol==='https:' ? url.href : '';
