@@ -48,7 +48,7 @@ To allow more than one origin, separate exact origins with commas. Add localhost
 
 1. In Vercel open **Deployments**.
 2. Select the latest deployment and click **Redeploy** after adding environment variables.
-3. Copy the production project domain, for example `https://everroot-example.vercel.app`.
+3. Copy the production project domain, for example `https://ever-root.vercel.app`.
 4. The function endpoint is that domain plus `/api/request-deck`.
 
 ### 5. Connect GitHub Pages to the backend
@@ -57,7 +57,7 @@ Open `everroot-api.js` and replace:
 
 ```js
 window.EVERROOT_DECK_API_URL =
-  'https://YOUR-PROJECT.vercel.app/api/request-deck';
+  'https://ever-root.vercel.app/api/request-deck';
 ```
 
 with the production Vercel Function URL. Commit the change to `main` and wait for GitHub Pages to finish publishing.
