@@ -8,7 +8,7 @@ const translations = {
     'plant.title':'A six-year development path.','plant.text':'A staged planting program is designed to distribute establishment work, capital needs and future harvests across the development cycle.','roadmap.title':'From first hectare to full estate.','roadmap.text':'The current concept is based on approximately 5 hectares of new planting per year until the target area is established.',
     'tree.title':'A fast-growing tree with a valuable timber profile.','tree.lead':'EverRoot is built around Paulownia cultivation, selected for the combination of growth rate, lightweight timber and regenerative potential.','tree.f1':'Indicative annual growth under suitable conditions','tree.f2':'Target first commercial cycle in the plan','tree.f3':'Sterile hybrid, such as Shan Tong, planned','tree.note':'Agronomic and financial figures in the business plan are estimates. Results depend on the site, planting material, irrigation, management and market conditions.',
     'invest.title':'Interested in the full picture?','invest.text':'The business plan estimates approximately €800K of total capital and operating costs over seven years, with €300K required from an external investor because early revenue is expected to fund part of the project.','invest.li1':'External investment requirement: €300K','invest.li2':'Estimated total seven-year costs: approximately €800K','invest.li3':'50/50 equity; 80% of net profit to the Investor until €300K is returned','invest.li4':'Planned use: land, irrigation, equipment, operations and contingency',
-    'form.title':'Request investment materials','form.name':'Full name','form.email':'Email','form.company':'Company / fund','form.message':'Message','form.button':'Request access <span>→</span>','form.note':'By submitting, you agree to be contacted regarding EverRoot. This form is a front-end demo until an email service is connected.',
+    'form.title':'Request investment materials','form.name':'Full name','form.email':'Email','form.company':'Company / fund','form.message':'Message','form.button':'Request access <span>→</span>','form.note':'By submitting, you agree to be contacted regarding EverRoot.',
     'init.title':"Built with an operator's mindset.",'init.role':'Founder & Project Initiator','init.text':'Project initiator and on-site operating manager, responsible for strategic management, operational control and financial planning.','init.link':'Start a conversation →','contact.title':"Let's discuss the opportunity.",'contact.text':'For the full business plan, financial model or an online project presentation, get in touch directly.','footer.disclaimer':'Project and financial information is preliminary, based on the attached business plan, and subject to verification and definitive agreements.','credits.title':'Photo credits','credits.modified':'cropped and color-adjusted for layout',
     'common.scroll':'Scroll to explore <span>↓</span>',
     'snapshot.eyebrow':'EverRoot at a glance',
@@ -38,6 +38,9 @@ const translations = {
     'form.nameph':'Your name',
     'form.emailph':'name@company.com',
     'form.companyph':'Optional',
+    'form.sending':'Sending…',
+    'form.success':'Thank you. The investment presentation has been sent to your email.',
+    'form.error':'We could not send the presentation. Please check your details and try again.',
     'form.messageph':'Tell us briefly about your interest'
   },
   pl:{
@@ -49,7 +52,7 @@ const translations = {
     'plant.title':'Sześcioletnia ścieżka rozwoju.','plant.text':'Etapowy program nasadzeń rozkłada prace związane z zakładaniem plantacji, potrzeby kapitałowe i przyszłe zbiory na cały cykl rozwoju.','roadmap.title':'Od pierwszego hektara do pełnej plantacji.','roadmap.text':'Obecna koncepcja zakłada około 5 hektarów nowych nasadzeń rocznie, aż do osiągnięcia docelowej powierzchni.',
     'tree.title':'Szybko rosnące drzewo o cennym profilu drewna.','tree.lead':'EverRoot opiera się na uprawie paulowni, wybranej ze względu na połączenie szybkiego wzrostu, lekkiego drewna i zdolności regeneracyjnych.','tree.f1':'Orientacyjny roczny wzrost w odpowiednich warunkach','tree.f2':'Docelowy pierwszy cykl komercyjny w planie','tree.f3':'Planowana sterylna hybryda, np. Shan Tong','tree.note':'Dane agronomiczne i finansowe w biznesplanie są szacunkowe. Wyniki zależą od działki, materiału sadzeniowego, nawadniania, zarządzania i warunków rynkowych.',
     'invest.title':'Chcesz poznać pełny obraz?','invest.text':'Biznesplan szacuje łączne nakłady kapitałowe i operacyjne w okresie siedmiu lat na około 800 tys. €, przy wymaganej inwestycji zewnętrznej 300 tys. €, ponieważ część projektu ma być finansowana z wcześniejszych przychodów.','invest.li1':'Wymagana inwestycja zewnętrzna: 300 tys. €','invest.li2':'Szacowane łączne koszty siedmiu lat: około 800 tys. €','invest.li3':'Udziały 50/50; 80% zysku netto dla Inwestora do zwrotu 300 tys. €','invest.li4':'Planowane wykorzystanie: grunt, nawadnianie, sprzęt, działalność i rezerwa',
-    'form.title':'Poproś o materiały inwestycyjne','form.name':'Imię i nazwisko','form.email':'E-mail','form.company':'Firma / fundusz','form.message':'Wiadomość','form.button':'Poproś o dostęp <span>→</span>','form.note':'Wysyłając formularz, wyrażasz zgodę na kontakt w sprawie EverRoot. Do czasu podłączenia usługi e-mail formularz działa w trybie demonstracyjnym.','form.success':'Dziękujemy. Twoje zgłoszenie zostało zapisane. Podłącz usługę e-mail, aby automatycznie wysyłać prezentację.',
+    'form.title':'Poproś o materiały inwestycyjne','form.name':'Imię i nazwisko','form.email':'E-mail','form.company':'Firma / fundusz','form.message':'Wiadomość','form.button':'Poproś o dostęp <span>→</span>','form.note':'Wysyłając formularz, wyrażasz zgodę na kontakt w sprawie EverRoot.','form.success':'Dziękujemy. Prezentacja inwestycyjna została wysłana na Twój adres e-mail.',
     'init.title':'Projekt tworzony z myśleniem praktyka.','init.role':'Założyciel i inicjator projektu','init.text':'Inicjator projektu i kierownik operacyjny na miejscu, odpowiedzialny za zarządzanie strategiczne, kontrolę operacyjną i planowanie finansowe.','init.link':'Rozpocznij rozmowę →','contact.title':'Porozmawiajmy o tej możliwości.','contact.text':'Aby otrzymać pełny biznesplan, model finansowy lub prezentację projektu online, skontaktuj się z nami bezpośrednio.','footer.disclaimer':'Informacje projektowe i finansowe są wstępne, oparte na załączonym biznesplanie i podlegają weryfikacji oraz ostatecznym umowom.','credits.title':'Autorzy zdjęć','credits.modified':'przycięto i skorygowano kolorystycznie na potrzeby układu',
     'common.scroll':'Przewiń, aby poznać projekt <span>↓</span>',
     'snapshot.eyebrow':'EverRoot w skrócie',
@@ -79,6 +82,8 @@ const translations = {
     'form.nameph':'Imię i nazwisko',
     'form.emailph':'nazwa@firma.com',
     'form.companyph':'Opcjonalnie',
+    'form.sending':'Wysyłanie…',
+    'form.error':'Nie udało się wysłać prezentacji. Sprawdź dane i spróbuj ponownie.',
     'form.messageph':'Krótko opisz swoje zainteresowanie'
   },
   uk:{
@@ -90,7 +95,7 @@ const translations = {
     'plant.title':'Шестирічний шлях розвитку.','plant.text':'Поетапна програма висаджування розподіляє роботи зі створення плантації, потреби в капіталі та майбутні заготівлі протягом усього циклу розвитку.','roadmap.title':'Від першого гектара до повноцінного лісового господарства.','roadmap.text':'Поточна концепція передбачає приблизно 5 гектарів нових насаджень щороку до досягнення цільової площі.',
     'tree.title':'Швидкоросле дерево з цінною деревиною.','tree.lead':'В основі EverRoot — вирощування павловнії, обраної завдяки поєднанню швидкого росту, легкої деревини та здатності до відновлення.','tree.f1':'Орієнтовний річний приріст за належних умов','tree.f2':'Цільовий перший комерційний цикл у плані','tree.f3':'Запланований стерильний гібрид, наприклад Shan Tong','tree.note':'Агрономічні та фінансові показники бізнес-плану є оцінками. Результати залежать від ділянки, садивного матеріалу, зрошення, управління та ринкових умов.',
     'invest.title':'Хочете побачити повну картину?','invest.text':'Бізнес-план оцінює сукупні капітальні й операційні витрати за сім років приблизно у 800 тис. €, а потребу в зовнішній інвестиції — у 300 тис. €, оскільки частину проєкту планується фінансувати ранніми доходами.','invest.li1':'Потреба в зовнішній інвестиції: 300 тис. €','invest.li2':'Орієнтовні сукупні витрати за сім років: близько 800 тис. €','invest.li3':'Частки 50/50; 80% чистого прибутку Інвестору до повернення 300 тис. €','invest.li4':'Планове використання: земля, зрошення, обладнання, операції та резерв',
-    'form.title':'Запросити інвестиційні матеріали','form.name':'Повне ім’я','form.email':'Електронна пошта','form.company':'Компанія / фонд','form.message':'Повідомлення','form.button':'Запросити доступ <span>→</span>','form.note':'Надсилаючи форму, ви погоджуєтеся на зв’язок щодо EverRoot. До підключення поштового сервісу форма працює в демонстраційному режимі.','form.success':'Дякуємо. Ваш запит збережено. Підключіть поштовий сервіс для автоматичного надсилання презентації.',
+    'form.title':'Запросити інвестиційні матеріали','form.name':'Повне ім’я','form.email':'Електронна пошта','form.company':'Компанія / фонд','form.message':'Повідомлення','form.button':'Запросити доступ <span>→</span>','form.note':'Надсилаючи форму, ви погоджуєтеся na зв’язок щодо EverRoot.','form.success':'Дякуємо. Інвестиційну презентацію надіслано на вашу електронну пошту.',
     'init.title':'Створено з мисленням практика.','init.role':'Засновник та ініціатор проєкту','init.text':'Ініціатор проєкту й операційний керівник на місці, відповідальний за стратегічне управління, операційний контроль і фінансове планування.','init.link':'Розпочати розмову →','contact.title':'Обговорімо цю можливість.','contact.text':'Щоб отримати повний бізнес-план, фінансову модель або онлайн-презентацію проєкту, зв’яжіться з нами безпосередньо.','footer.disclaimer':'Інформація про проєкт і фінанси є попередньою, базується на доданому бізнес-плані та підлягає перевірці й остаточним угодам.','credits.title':'Автори фотографій','credits.modified':'кадровано та скориговано за кольором для макета',
     'common.scroll':'Прокрутіть, щоб дізнатися більше <span>↓</span>',
     'snapshot.eyebrow':'EverRoot у цифрах',
@@ -120,6 +125,8 @@ const translations = {
     'form.nameph':'Повне ім’я',
     'form.emailph':'name@company.com',
     'form.companyph':'Необов’язково',
+    'form.sending':'Надсилання…',
+    'form.error':'Не вдалося надіслати презентацію. Перевірте дані та повторіть спробу.',
     'form.messageph':'Коротко опишіть свою зацікавленість'
   },
   ru:{
@@ -131,7 +138,7 @@ const translations = {
     'plant.title':'Шестилетний путь развития.','plant.text':'Поэтапная программа посадки распределяет работы по созданию плантации, потребности в капитале и будущие заготовки по всему циклу развития.','roadmap.title':'От первого гектара до полноценного лесного хозяйства.','roadmap.text':'Текущая концепция предусматривает высадку примерно 5 новых гектаров в год до достижения целевой площади.',
     'tree.title':'Быстрорастущее дерево с ценной древесиной.','tree.lead':'В основе EverRoot — выращивание павловнии, выбранной благодаря сочетанию быстрого роста, лёгкой древесины и способности к восстановлению.','tree.f1':'Ориентировочный годовой прирост при подходящих условиях','tree.f2':'Целевой первый коммерческий цикл по плану','tree.f3':'Планируемый стерильный гибрид, например Shan Tong','tree.note':'Агрономические и финансовые показатели бизнес-плана являются оценочными. Результаты зависят от участка, посадочного материала, орошения, управления и рыночных условий.',
     'invest.title':'Хотите увидеть полную картину?','invest.text':'Бизнес-план оценивает совокупные капитальные и операционные затраты за семь лет примерно в 800 тыс. €, а потребность во внешних инвестициях — в 300 тыс. €, поскольку часть проекта планируется финансировать ранними доходами.','invest.li1':'Потребность во внешних инвестициях: 300 тыс. €','invest.li2':'Ориентировочные совокупные затраты за семь лет: около 800 тыс. €','invest.li3':'Доли 50/50; 80% чистой прибыли Инвестору до возврата 300 тыс. €','invest.li4':'Планируемое использование: земля, орошение, техника, операции и резерв',
-    'form.title':'Запросить инвестиционные материалы','form.name':'Полное имя','form.email':'Электронная почта','form.company':'Компания / фонд','form.message':'Сообщение','form.button':'Запросить доступ <span>→</span>','form.note':'Отправляя форму, вы соглашаетесь на связь по вопросам EverRoot. До подключения почтового сервиса форма работает в демонстрационном режиме.','form.success':'Спасибо. Ваш запрос принят. Подключите почтовый сервис для автоматической отправки презентации.',
+    'form.title':'Запросить инвестиционные материалы','form.name':'Полное имя','form.email':'Электронная почта','form.company':'Компания / фонд','form.message':'Сообщение','form.button':'Запросить доступ <span>→</span>','form.note':'Отправляя форму, вы соглашаетесь на связь по вопросам EverRoot.','form.success':'Спасибо. Инвестиционная презентация отправлена на вашу электронную почту.',
     'init.title':'Создано с мышлением практика.','init.role':'Основатель и инициатор проекта','init.text':'Инициатор проекта и операционный руководитель на месте, отвечающий за стратегическое управление, операционный контроль и финансовое планирование.','init.link':'Начать разговор →','contact.title':'Давайте обсудим возможности.','contact.text':'Чтобы получить полный бизнес-план, финансовую модель или онлайн-презентацию проекта, свяжитесь с нами напрямую.','footer.disclaimer':'Информация о проекте и финансах предварительная, основана на приложенном бизнес-плане и подлежит проверке и окончательным соглашениям.','credits.title':'Авторы фотографий','credits.modified':'кадрировано и скорректировано по цвету для макета',
     'common.scroll':'Листайте, чтобы узнать больше <span>↓</span>',
     'snapshot.eyebrow':'EverRoot в цифрах',
@@ -161,6 +168,8 @@ const translations = {
     'form.nameph':'Полное имя',
     'form.emailph':'name@company.com',
     'form.companyph':'Необязательно',
+    'form.sending':'Отправка…',
+    'form.error':'Не удалось отправить презентацию. Проверьте данные и повторите попытку.',
     'form.messageph':'Кратко опишите свой интерес'
   }
 };
@@ -170,5 +179,37 @@ langButtons.forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
 setLang(localStorage.getItem('everroot-lang')||'en');
 
 
-document.getElementById('accessForm').addEventListener('submit',e=>{e.preventDefault();const status=document.getElementById('formStatus');status.textContent=translations[document.documentElement.lang]?.['form.success'] || 'Thank you. Your request has been captured. Connect an email service to send the deck automatically.';});
+const accessForm=document.getElementById('accessForm');
+const accessSubmit=document.getElementById('accessSubmit');
+const formStatus=document.getElementById('formStatus');
+const languageCodes={en:'en',pl:'pl',uk:'ua',ru:'ru'};
+function formMessage(key){return translations[document.documentElement.lang]?.[key] || translations.en[key] || '';}
+accessForm?.addEventListener('submit',async event=>{
+  event.preventDefault();
+  if(!accessForm.checkValidity()){accessForm.reportValidity();return;}
+  const endpoint=window.EVERROOT_DECK_API_URL?.trim();
+  const originalButton=accessSubmit.innerHTML;
+  accessSubmit.disabled=true;
+  accessSubmit.setAttribute('aria-busy','true');
+  accessSubmit.textContent=formMessage('form.sending');
+  formStatus.dataset.state='sending';
+  formStatus.textContent=formMessage('form.sending');
+  const data=new FormData(accessForm);
+  const payload={name:data.get('name'),email:data.get('email'),company:data.get('company'),message:data.get('message'),website:data.get('website'),language:languageCodes[document.documentElement.lang] || 'en'};
+  try{
+    if(!endpoint) throw new Error('endpoint-not-configured');
+    const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    if(!response.ok) throw new Error('request-failed');
+    accessForm.reset();
+    formStatus.dataset.state='success';
+    formStatus.textContent=formMessage('form.success');
+  }catch{
+    formStatus.dataset.state='error';
+    formStatus.textContent=formMessage('form.error');
+  }finally{
+    accessSubmit.disabled=false;
+    accessSubmit.removeAttribute('aria-busy');
+    accessSubmit.innerHTML=originalButton;
+  }
+});
 const menu=document.querySelector('.menu-toggle');menu?.addEventListener('click',()=>document.querySelector('.nav').classList.toggle('mobile-open'));
