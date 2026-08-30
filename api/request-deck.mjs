@@ -217,7 +217,7 @@ export default {
         },
         signal: AbortSignal.timeout(10000),
         body: JSON.stringify([
-          { from, to: [email], reply_to: owner, subject: copy.subject, ...recipientMessage },
+          { from, to: [email], reply_to: 'invest@everroot.eu', subject: copy.subject, ...recipientMessage },
           { from, to: [owner], reply_to: email, subject: `New EverRoot investment deck request — ${name}`, ...ownerMessage }
         ])
       });
