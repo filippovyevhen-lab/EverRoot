@@ -2,54 +2,44 @@ const WINDOW_MS = 15 * 60 * 1000;
 const MAX_REQUESTS = 5;
 const MAX_BODY_BYTES = 16 * 1024;
 const requestBuckets = new Map();
-
-const deckFiles = {
-  en: 'EverRoot-Investment-Deck-EN.pdf',
-  pl: 'EverRoot-Investment-Deck-PL.pdf',
-  ua: 'EverRoot-Investment-Deck-UA.pdf',
-  ru: 'EverRoot-Investment-Deck-RU.pdf'
-};
+const supportedLanguages = new Set(['en', 'pl', 'ua', 'ru']);
 
 const mailCopy = {
   en: {
-    subject: 'EverRoot Investment Presentation',
+    subject: 'EverRoot — project materials request received',
     hello: name => `Hello ${name},`,
     thanks: 'Thank you for your interest in EverRoot.',
-    access: 'You can access the EverRoot investment presentation using the link below:',
-    button: 'View / Download Investment Presentation',
-    overview: 'The presentation contains an overview of the project, business model, development strategy, financial assumptions and proposed investment structure.',
-    disclaimer: 'Please note that the figures presented are indicative and subject to further due diligence.',
-    regards: 'Best regards',
+    received: 'We have received your request for the current project materials.',
+    status: 'EverRoot is currently in pre-development, with supplier quotations, site conditions, water supply and timber-market assumptions being validated. We prefer to send the latest reviewed materials rather than an outdated investment deck automatically.',
+    followup: 'We will reply with the most current project information available.',
+    regards: 'Best regards'
   },
   pl: {
-    subject: 'Prezentacja inwestycyjna EverRoot',
+    subject: 'EverRoot — otrzymaliśmy prośbę o materiały projektu',
     hello: name => `Dzień dobry ${name},`,
     thanks: 'Dziękujemy za zainteresowanie projektem EverRoot.',
-    access: 'Prezentacja inwestycyjna EverRoot jest dostępna pod poniższym linkiem:',
-    button: 'Wyświetl / pobierz prezentację inwestycyjną',
-    overview: 'Prezentacja zawiera przegląd projektu, modelu biznesowego, strategii rozwoju, założeń finansowych i proponowanej struktury inwestycji.',
-    disclaimer: 'Przedstawione dane mają charakter orientacyjny i podlegają dalszej analizie due diligence.',
-    regards: 'Z poważaniem',
+    received: 'Otrzymaliśmy prośbę o aktualne materiały projektu.',
+    status: 'EverRoot znajduje się obecnie na etapie przygotowawczym. Weryfikujemy oferty dostawców, warunki działki, źródło wody oraz założenia rynku drewna. Zamiast automatycznie wysyłać nieaktualną prezentację inwestycyjną, wolimy przesłać najnowsze zweryfikowane materiały.',
+    followup: 'Odpowiemy, przesyłając najbardziej aktualne informacje o projekcie.',
+    regards: 'Z poważaniem'
   },
   ua: {
-    subject: 'Інвестиційна презентація EverRoot',
+    subject: 'EverRoot — запит на матеріали проєкту отримано',
     hello: name => `Вітаємо, ${name}!`,
     thanks: 'Дякуємо за інтерес до EverRoot.',
-    access: 'Інвестиційна презентація EverRoot доступна за посиланням нижче:',
-    button: 'Переглянути / завантажити інвестиційну презентацію',
-    overview: 'Презентація містить огляд проєкту, бізнес-моделі, стратегії розвитку, фінансових припущень і запропонованої інвестиційної структури.',
-    disclaimer: 'Зверніть увагу: наведені показники є орієнтовними та підлягають подальшій комплексній перевірці.',
-    regards: 'З повагою',
+    received: 'Ми отримали ваш запит на актуальні матеріали проєкту.',
+    status: 'EverRoot зараз перебуває на передпроєктній стадії: ми перевіряємо пропозиції постачальників, умови ділянки, водопостачання та припущення щодо ринку деревини. Тому замість автоматичного надсилання застарілої інвестиційної презентації ми надаємо лише актуальні перевірені матеріали.',
+    followup: 'Ми відповімо та надішлемо найактуальнішу доступну інформацію про проєкт.',
+    regards: 'З повагою'
   },
   ru: {
-    subject: 'Инвестиционная презентация EverRoot',
+    subject: 'EverRoot — запрос на материалы проекта получен',
     hello: name => `Здравствуйте, ${name}!`,
     thanks: 'Спасибо за интерес к EverRoot.',
-    access: 'Инвестиционная презентация EverRoot доступна по ссылке ниже:',
-    button: 'Открыть / скачать инвестиционную презентацию',
-    overview: 'Презентация содержит обзор проекта, бизнес-модели, стратегии развития, финансовых предпосылок и предлагаемой инвестиционной структуры.',
-    disclaimer: 'Обратите внимание: представленные показатели являются ориентировочными и подлежат дальнейшей комплексной проверке.',
-    regards: 'С уважением',
+    received: 'Мы получили ваш запрос на актуальные материалы проекта.',
+    status: 'EverRoot сейчас находится на предпроектной стадии: мы проверяем предложения поставщиков, условия участка, водоснабжение и предпосылки рынка древесины. Поэтому вместо автоматической отправки устаревшей инвестиционной презентации мы предпочитаем отправлять только актуальные проверенные материалы.',
+    followup: 'Мы ответим и отправим наиболее актуальную доступную информацию о проекте.',
+    regards: 'С уважением'
   }
 };
 
@@ -121,18 +111,17 @@ function rateLimited(request) {
   return false;
 }
 
-function userEmail(copy, name, deckUrl) {
+function userEmail(copy, name) {
   const safeName = escapeHtml(name);
-  const safeUrl = escapeHtml(deckUrl);
   return {
-    html: `<div style="font-family:Arial,sans-serif;color:#173126;line-height:1.6;max-width:620px"><p>${copy.hello(safeName)}</p><p>${copy.thanks}</p><p>${copy.access}</p><p><a href="${safeUrl}" style="display:inline-block;background:#123b2b;color:#fff;text-decoration:none;padding:12px 20px;border-radius:24px">${copy.button}</a></p><p>${copy.overview}</p><p style="font-size:12px;color:#68766f">${copy.disclaimer}</p><p>${copy.regards},<br>Yevhen Filippov<br>EverRoot</p></div>`,
-    text: `${copy.hello(name)}\n\n${copy.thanks}\n\n${copy.access}\n${deckUrl}\n\n${copy.overview}\n\n${copy.disclaimer}\n\n${copy.regards},\nYevhen Filippov\nEverRoot`
+    html: `<div style="font-family:Arial,sans-serif;color:#173126;line-height:1.6;max-width:620px"><p>${copy.hello(safeName)}</p><p>${copy.thanks}</p><p>${copy.received}</p><p>${copy.status}</p><p>${copy.followup}</p><p>${copy.regards},<br>Yevhen Filippov<br>EverRoot</p></div>`,
+    text: `${copy.hello(name)}\n\n${copy.thanks}\n\n${copy.received}\n\n${copy.status}\n\n${copy.followup}\n\n${copy.regards},\nYevhen Filippov\nEverRoot`
   };
 }
 
 function ownerEmail({ name, email, company, message, language, requestedAt }) {
   const lines = [
-    'New EverRoot investment deck request',
+    'New EverRoot project materials request',
     '',
     `Name: ${name}`,
     `Email: ${email}`,
@@ -175,14 +164,13 @@ export default {
     }
 
     if (!input || typeof input !== 'object' || Array.isArray(input)) return json(origin, 400, { ok: false });
-
     if (clean(input.website, 200)) return json(origin, 200, { ok: true });
 
     const name = clean(input.name, 120);
     const email = clean(input.email, 254).toLowerCase();
     const company = clean(input.company, 160);
     const message = clean(input.message, 2000, true);
-    const language = deckFiles[input.language] ? input.language : 'en';
+    const language = supportedLanguages.has(input.language) ? input.language : 'en';
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
     if (name.length < 2 || !emailPattern.test(email)) return json(origin, 400, { ok: false });
     if (rateLimited(request)) return json(origin, 429, { ok: false }, { 'Retry-After': String(Math.ceil(WINDOW_MS / 1000)) });
@@ -190,21 +178,11 @@ export default {
     const apiKey = process.env.RESEND_API_KEY;
     const from = process.env.RESEND_FROM_EMAIL;
     const owner = process.env.EVERROOT_OWNER_EMAIL;
-    const configuredSiteUrl = process.env.EVERROOT_SITE_URL;
-    if (!apiKey || !from || !owner || !configuredSiteUrl) return json(origin, 503, { ok: false });
+    if (!apiKey || !from || !owner) return json(origin, 503, { ok: false });
 
-    let siteUrl;
-    try {
-      const parsedSiteUrl = new URL(configuredSiteUrl);
-      if (!['http:', 'https:'].includes(parsedSiteUrl.protocol)) throw new Error('invalid-site-url');
-      siteUrl = parsedSiteUrl.href.replace(/\/$/, '');
-    } catch {
-      return json(origin, 503, { ok: false });
-    }
-    const deckUrl = `${siteUrl}/assets/decks/${deckFiles[language]}`;
     const copy = mailCopy[language];
     const requestedAt = new Date().toISOString();
-    const recipientMessage = userEmail(copy, name, deckUrl);
+    const recipientMessage = userEmail(copy, name);
     const ownerMessage = ownerEmail({ name, email, company, message, language, requestedAt });
 
     try {
@@ -218,7 +196,7 @@ export default {
         signal: AbortSignal.timeout(10000),
         body: JSON.stringify([
           { from, to: [email], reply_to: 'invest@everroot.eu', subject: copy.subject, ...recipientMessage },
-          { from, to: [owner], reply_to: email, subject: `New EverRoot investment deck request — ${name}`, ...ownerMessage }
+          { from, to: [owner], reply_to: email, subject: `New EverRoot project materials request — ${name}`, ...ownerMessage }
         ])
       });
       if (!response.ok) return json(origin, 502, { ok: false });
@@ -228,4 +206,3 @@ export default {
     }
   }
 };
-

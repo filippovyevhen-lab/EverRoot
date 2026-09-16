@@ -6,17 +6,17 @@ A premium single-page investor landing page for the EverRoot agroforestry projec
 
 - `index.html` — page structure and content
 - `styles.css` — responsive visual design
-- `script.js` — language switching and investment deck request flow
-- `api/request-deck.mjs` — Vercel Function that sends localized email through Resend
+- `script.js` and `content-v3.js` — language switching, current EN/PL/UA/RU content and project-materials request flow
+- `api/request-deck.mjs` — Vercel Function that sends a localized acknowledgement and owner lead notification through Resend
 - `everroot-api.js` — the single public location for the deployed backend URL
-- `assets/decks/` — EN, PL, UA and RU investment presentations
+- `assets/decks/` — archived EN, PL, UA and RU presentations; retained in the repository but not sent automatically
 - `CNAME` — the GitHub Pages custom domain
 
 ## Languages
 
-The website and investment deck delivery support EN, PL, UA and RU.
+The website and project-materials request acknowledgement support EN, PL, UA and RU.
 
-## Investment deck email delivery setup
+## Project materials request email setup
 
 ### 1. Import the repository into Vercel
 
@@ -69,12 +69,13 @@ For EN, PL, UA and RU:
 
 1. Select the language on the site.
 2. Submit the form using an email address you can access.
-3. Confirm that the investor receives the matching PDF link.
+3. Confirm that the investor receives the localized acknowledgement without an old presentation link.
 4. Confirm that `EVERROOT_OWNER_EMAIL` receives a separate lead notification.
-5. Open the PDF link and confirm that it loads from `https://everroot.eu/assets/decks/`.
+5. Confirm that no archived PDF is attached or linked automatically.
 
 The API endpoint never returns Resend error details or environment variables to the browser.
 
 ## Deploy
 
 The public site is published from the `main` branch root through GitHub Pages at `https://everroot.eu`. The email endpoint is deployed separately as a Vercel Function.
+
