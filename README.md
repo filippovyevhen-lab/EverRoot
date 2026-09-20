@@ -6,7 +6,8 @@ A premium single-page investor landing page for the EverRoot agroforestry projec
 
 - `index.html` — page structure and content
 - `styles.css` — responsive visual design
-- `script.js` and `content-v3.js` — language switching, current EN/PL/UA/RU content and project-materials request flow
+- `content-v3.js` — the single authoritative EN/PL/UA/RU content dictionary
+- `script.js` — language switching, mobile navigation and project-materials request behaviour
 - `api/request-deck.mjs` — Vercel Function that sends a localized acknowledgement and owner lead notification through Resend
 - `everroot-api.js` — the single public location for the deployed backend URL
 - `assets/decks/` — archived EN, PL, UA and RU presentations; retained in the repository but not sent automatically
@@ -78,4 +79,5 @@ The API endpoint never returns Resend error details or environment variables to 
 ## Deploy
 
 The public site is published from the `main` branch root through GitHub Pages at `https://everroot.eu`. The email endpoint is deployed separately as a Vercel Function.
+
 
