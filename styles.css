@@ -46,3 +46,6 @@ h1,h2,h3{line-height:1.12;letter-spacing:-.018em}
 @media(max-width:390px){.hero-content h1,:lang(pl) .hero-content h1,:lang(uk) .hero-content h1,:lang(ru) .hero-content h1{font-size:2.7rem}.metric strong{font-size:1.72rem}.rotation-track>div{width:57px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
+/* Temporary direct-contact replacement for the deck request UI. */
+.direct-contact-section{background:#ebe8de}.direct-contact-layout{display:grid;grid-template-columns:minmax(0,760px);justify-content:start}.direct-contact-layout h2{font-size:clamp(2.2rem,3.4vw,3.45rem);line-height:1.1}.direct-contact-layout p{max-width:620px;margin-top:22px;color:var(--muted);font-size:1rem;line-height:1.72}.direct-contact-email{display:inline-block;margin-top:18px;color:var(--forest);font-family:"Playfair Display",serif;font-size:clamp(1.45rem,2.25vw,2rem);font-weight:500;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:3px}.direct-contact-email:hover{color:var(--olive)}@media(max-width:540px){.direct-contact-layout h2{font-size:clamp(2rem,8.2vw,2.45rem)}.direct-contact-email{font-size:1.45rem}}
+
